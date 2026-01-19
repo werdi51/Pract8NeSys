@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_7"
         mc:Ignorable="d"
-        Title="MainWindow" Height="630" Width="700">
-    <!--<Window.Resources>
-        <local:User x:Key="medik"/>
-    </Window.Resources>
-    <Window.DataContext>
-        <Binding Source="{StaticResource medik}"/>
-    </Window.DataContext>-->
-    <Grid>
+        Title="MainWindow">
+    <Grid Style="{DynamicResource MainPanel}">
 
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Настройки">
+                    <MenuItem Header="Сменить тему" Click="MainFrame_Navigated"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1"></Frame>
 
         <!--<Grid.ColumnDefinitions>
             <ColumnDefinition />

@@ -1,10 +1,41 @@
 ﻿<Page x:Class="_7.Pages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Главная страница" Height="600" Width="800"
-      Background="White"
-      Loaded="Page_Loaded">
+      Title="Главная страница" 
+      Loaded="Page_Loaded"
+      >
 
+    <Page.Resources>
+        
+        <Style TargetType="TextBlock" x:Key="Vertical">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="Info">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+        </Style>
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource header}" x:Key="list">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="StackPanel" BasedOn="{StaticResource HorisontalPanel}" x:Key="margin">
+            <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="gray">
+            <Setter Property="Background" Value="{DynamicResource BorderBackground}"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+
+        
+        
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -16,75 +47,78 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10" Background="White" Grid.ColumnSpan="2">
-            <TextBlock Text="{Binding DoctorInfoString}" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <Button Content="Выйти" Click="LogoutButton_Click" Padding="5"/>
+        <StackPanel Grid.Row="0" Style="{StaticResource HorisontalPanel}" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding DoctorInfoString}" Style="{StaticResource Vertical}" />
+            <Button Content="Выйти" Click="LogoutButton_Click" Style="{StaticResource ButtonExit}"/>
         </StackPanel>
 
-        <Grid Grid.Row="1" Grid.Column="0" Background="White">
-            <StackPanel Margin="10">
-                <Label Content="Информация о пациенте" FontSize="16"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <StackPanel>
+                <TextBlock Text="Информация о пациенте" Style="{StaticResource header}"/>
 
-                <StackPanel Margin="0,10,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="ID: " Width="120"/>
+                <StackPanel>
+                    <StackPanel Style="{StaticResource margin}">
+                        <TextBlock Text="ID: " Style="{StaticResource Info}"/>
                         <TextBlock Text="{Binding SelectedPatient.Id}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Фамилия: " Width="120"/>
+                    <StackPanel Style="{StaticResource margin}">
+                        <TextBlock Text="Фамилия: " Style="{StaticResource Info}"/>
                         <TextBlock Text="{Binding SelectedPatient.LastName}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Имя: " Width="120"/>
+                    <StackPanel Style="{StaticResource margin}" >
+                        <TextBlock Text="Имя: " Style="{StaticResource Info}"/>
                         <TextBlock Text="{Binding SelectedPatient.Name}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Отчество: " Width="120"/>
+                    <StackPanel Style="{StaticResource margin}" >
+                        <TextBlock Text="Отчество: " Style="{StaticResource Info}"/>
                         <TextBlock Text="{Binding SelectedPatient.MiddleName}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Дата рождения: " Width="120"/>
+                    <StackPanel Style="{StaticResource margin}" >
+                        <TextBlock Text="Дата рождения: " Style="{StaticResource Info}"/>
                         <TextBlock Text="{Binding SelectedPatient.Birthday}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="Телефон: " Width="120"/>
+                    <StackPanel Style="{StaticResource margin}" >
+                        <TextBlock Text="Телефон: " Style="{StaticResource Info}"/>
                         <TextBlock Text="{Binding SelectedPatient.PhoneNumber}"/>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="20">
+                <StackPanel Style="{StaticResource HorisontalPanel}">
                     <Button Content="Начать прием" 
-                            Click="StartAppointmentButton_Click"
-                            Margin="10" Width="120"/>
+                            Click="StartAppointmentButton_Click" Style="{StaticResource ButtonStart}"
+                            />
                     <Button Content="Изменить информацию" 
-                            Click="EditPatientButton_Click"
-                            Padding="10,5" Margin="10" Width="150"/>
+                            Click="EditPatientButton_Click" Style="{StaticResource ButtonChange}"
+                           />
+                    <Button Content="Удалить" 
+                            Click="DeletePatientButton_Click"  Style="{StaticResource ButtonDelete}"
+                           />
                 </StackPanel>
 
-                <Label Content="История приёмов" Margin="10"/>
+                <TextBlock Text="История приёмов"/>
 
-                <ListView ItemsSource="{Binding SelectedPatient.AppointmentStories}" Height="200">
+                <ListView ItemsSource="{Binding SelectedPatient.AppointmentStories}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,0,0,5">
-                                <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <StackPanel Style="{StaticResource HorisontalPanel}">
                                     <TextBlock Text="Дата: " />
                                     <TextBlock Text="{Binding date}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Style="{StaticResource HorisontalPanel}">
                                     <TextBlock Text="Диагноз: " />
-                                    <TextBlock Text="{Binding Diagnosis}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Diagnosis}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Style="{StaticResource HorisontalPanel}">
                                     <TextBlock Text="Рекомендации: " />
-                                    <TextBlock Text="{Binding Recomendations}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Recomendations}"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Style="{StaticResource HorisontalPanel}">
                                     <TextBlock Text="Врач ID: " />
                                     <TextBlock Text="{Binding doctor_id}"/>
                                 </StackPanel>
@@ -95,42 +129,44 @@
             </StackPanel>
         </Grid>
 
-        <Border Grid.Row="1" Grid.Column="1" Margin="10" BorderBrush="#E0E0E0" BorderThickness="1">
+        <Border Grid.Row="1" Grid.Column="1" >
             <StackPanel>
-                <Label Content="Список пациентов" FontSize="14" HorizontalAlignment="Center" Background="#F5F5F5" Padding="5"/>
-                <Button Content="Создать пациента" Click="CreatePatientButton_Click" Margin="5" Padding="5"/>
+                <TextBlock Text="Список пациентов" Style="{StaticResource list}"/>
+                <Button Content="Создать пациента" Click="CreatePatientButton_Click" Style="{StaticResource ButtonAdd}"/>
 
                 <ListView ItemsSource="{Binding Patients}" 
                           SelectedItem="{Binding SelectedPatient}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="5">
                                 <StackPanel>
-                                    <TextBlock Text="{Binding LastName}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding LastName}"/>
                                     <TextBlock Text="{Binding Name}"/>
                                     <TextBlock Text="{Binding MiddleName}"/>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="ID: " Foreground="Gray"/>
-                                        <TextBlock Text="{Binding Id}" Foreground="Gray"/>
+                                    <StackPanel Style="{StaticResource HorisontalPanel}">
+                                        <TextBlock Text="ID: "/>
+                                        <TextBlock Text="{Binding Id}"/>
                                     </StackPanel>
                                 </StackPanel>
-                            </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </Border>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Background="LightGray" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="2" Style="{StaticResource gray}" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Докторов: "/>
-                <TextBlock Text="{Binding DoctorsCount}" FontWeight="Bold" Margin="5"/>
+                <TextBlock Text="{Binding DoctorsCount}" Style="{StaticResource header}"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Пациентов: "/>
-                <TextBlock Text="{Binding PatientsCount}" FontWeight="Bold" Margin="5"/>
+                <TextBlock Text="{Binding PatientsCount}"  Style="{StaticResource header}"/>
             </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Button Content="Сменить стиль" Click="Button_Click" Style="{StaticResource ButtonStart}"/>
         </StackPanel>
     </Grid>
 </Page>

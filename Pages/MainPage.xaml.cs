@@ -189,5 +189,45 @@ namespace _7.Pages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeHelper.Toggle();
+        }
+
+        private void DeletePatientButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedPatient == null)
+    {
+        MessageBox.Show("Выберите пациента для удаления.");
+        return;
+    }
+
+    string patientFullName = $"{SelectedPatient.LastName} {SelectedPatient.Name} {SelectedPatient.MiddleName}";
+    
+    MessageBoxResult result = MessageBox.Show(
+        $"Вы хотите удалить пациента {patientFullName}?\n",
+        "Подтверждение удаления",
+        MessageBoxButton.YesNo,
+        MessageBoxImage.Warning);
+
+    if (result == MessageBoxResult.Yes)
+    {
+        try
+        {
+            JSON.DeletePatient(SelectedPatient.Id);
+            
+            LoadAllPatients();
+            
+            SelectedPatient = null;
+            
+            MessageBox.Show("Пациент удален");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Ошибка при удалении");
+        }
+    }
+        }
     }
 }

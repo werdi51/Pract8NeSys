@@ -1,7 +1,7 @@
 ﻿<Page x:Class="_7.Pages.RegisterPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Регистрация врача" Height="500" Width="400">
+      Title="Регистрация врача">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -10,41 +10,41 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="10" Background="White">
-            <TextBlock Text="Регистрация нового врача" FontSize="16"/>
+        <StackPanel Grid.Row="0" >
+            <TextBlock Text="Регистрация нового врача" Style="{StaticResource header}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="10" Background="White">
+        <StackPanel Grid.Row="1" >
             <Label Content="Фамилия:"/>
-            <TextBox x:Name="LastNameTextBox" Margin="0,0,0,10"/>
+            <TextBox x:Name="LastNameTextBox" />
 
             <Label Content="Имя:"/>
-            <TextBox x:Name="NameTextBox" Margin="0,0,0,10"/>
+            <TextBox x:Name="NameTextBox" />
 
             <Label Content="Отчество:"/>
-            <TextBox x:Name="MiddleNameTextBox" Margin="0,0,0,10"/>
+            <TextBox x:Name="MiddleNameTextBox"/>
 
             <Label Content="Специализация:"/>
-            <ComboBox x:Name="SpecialisationComboBox" Margin="0,0,0,10">
+            <ComboBox x:Name="SpecialisationComboBox">
                 <ComboBoxItem Content="Терапевт"/>
                 <ComboBoxItem Content="Хирург"/>
                 <ComboBoxItem Content="Лор"/>
             </ComboBox>
 
             <Label Content="Пароль:"/>
-            <PasswordBox x:Name="PasswordBox1" Margin="0,0,0,10"/>
+            <PasswordBox x:Name="PasswordBox1" />
 
             <Label Content="Подтверждение пароля:"/>
-            <PasswordBox x:Name="PasswordBox2" Margin="0,0,0,20"/>
+            <PasswordBox x:Name="PasswordBox2"/>
 
             <TextBlock x:Name="MessageTextBlock"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button Content="Назад" Click="BackButton_Click" 
-                    Padding="10,5" Margin="0,0,10,0"/>
-            <Button Content="Зарегистрировать" Click="RegisterButton_Click" 
-                    Padding="10,5"/>
+        <StackPanel Grid.Row="2" Style="{StaticResource HorisontalPanel}">
+            <Button Content="Назад" Click="BackButton_Click" Style="{StaticResource ButtonExit}"
+                    />
+            <Button Content="Зарегистрировать" Click="RegisterButton_Click" Style="{StaticResource ButtonAdd}"
+                    />
         </StackPanel>
     </Grid>
 </Page>

@@ -29,6 +29,9 @@ namespace _7
             
         }
 
-      
+        private void MainFrame_Navigated(object sender, RoutedEventArgs e)
+        {
+            ThemeHelper.Toggle();
+        }
     }
 }

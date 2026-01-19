@@ -190,6 +190,23 @@ namespace _7
             return newId;
         }
 
-        
+        public static void DeletePatient(int patientId)
+        {
+            string fileName = $"P_{patientId}.json";
+            string filePath = Path.Combine(patientsFolder, fileName);
+
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    File.Delete(filePath);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Ошибка при удалении файла пациента: {ex.Message}");
+                }
+            }
+        }
+
     }
 }

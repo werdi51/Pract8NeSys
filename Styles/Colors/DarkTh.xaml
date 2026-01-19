@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="PageBackground" Color="#FF2A3E61"/>
+    <SolidColorBrush x:Key="PageBackgroundList" Color="#FF222F46"/>
+    <SolidColorBrush x:Key="PageForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="GrayBackground" Color="#FF3A4E71"/>
+    <SolidColorBrush x:Key="TextColor" Color="White"/>
+    <SolidColorBrush x:Key="HeaderColor" Color="LightSkyBlue"/>
+    <SolidColorBrush x:Key="BorderColor" Color="#FF4A5E81"/>
+    <SolidColorBrush x:Key="ButtonBackground" Color="#FF4A5E81"/>
+    <SolidColorBrush x:Key="ButtonForeground" Color="White"/>
+
+</ResourceDictionary>
